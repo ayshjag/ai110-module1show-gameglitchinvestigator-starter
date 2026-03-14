@@ -39,6 +39,8 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What change did you make that finally gave the game a stable secret number?
   I initialized `st.session_state.secret` once and only reset it after pressing New Game. I also stopped converting secret to string based on attempt parity and always used integer comparisons.
 
+- Additional bug documented: changing difficulty in the sidebar could desync the game because we did not reset state when difficulty changed. I added a `st.session_state.difficulty` sync check and reset game state on difficulty changes.
+
 ---
 
 ## 5. Looking ahead: your developer habits
@@ -49,4 +51,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   Next time I would explicitly ask the AI for the root cause first and only apply suggestions after I manually validate key assumptions, to avoid following misleading fixes blindly.
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
   This project taught me that AI-generated code can be a strong starting point, but it's critical to stay in control, validate outputs, and treat suggestions as hypotheses rather than final answers.
+
+## 6. Model Comparison (Challenge 5)
+
+- Bug compared: secret type mismatch in `check_guess` where secret was sometimes string and sometimes int.
+- Copilot Chat suggested converting secret to string in one branch and then comparing; this fix was less readable and introduced type inconsistency.
+- ChatGPT (this assistant) suggested normalizing both guess and secret to integers before comparison and returning clear outcomes. It was more readable and explained why type normalization prevents incorrect hint behavior.
+- Conclusion: The ChatGPT-style fix was cleaner and better explained the "why," while Copilot Chat's quick patch needed extra verification.
+
 

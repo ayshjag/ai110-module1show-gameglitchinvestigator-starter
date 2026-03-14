@@ -31,6 +31,7 @@ This game is a Streamlit number guessing game where players try to guess a secre
 
 - Fixed game is playable and winning works correctly.
 - Added a High Score tracker feature saved to `high_score.txt` and shown in the sidebar.
+- Documented and fixed difficulty-switch bug: changing difficulty now resets game state and secret number properly.
 - Added enhanced UI: color-coded hints, hot/cold emojis, and a player session summary table.
 - Test output:
 
