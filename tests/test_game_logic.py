@@ -96,3 +96,33 @@ def test_update_score_too_high_odd():
 
 def test_update_score_too_low():
     assert update_score(10, "Too Low", 1) == 5
+
+
+def test_edge_case_negative_guess():
+    ok, value, err = parse_guess("-5")
+    assert ok is True
+    assert value == -5
+    outcome, _ = check_guess(value, 50)
+    assert outcome == "Too Low"
+
+
+def test_edge_case_extremely_large_guess():
+    ok, value, err = parse_guess("999999999999")
+    assert ok is True
+    assert value == 999999999999
+    outcome, _ = check_guess(value, 50)
+    assert outcome == "Too High"
+
+
+def test_edge_case_decimal_small():
+    ok, value, err = parse_guess("0.001")
+    assert ok is True
+    assert value == 0
+    outcome, _ = check_guess(value, 1)
+    assert outcome == "Too Low"
+
+
+def test_edge_case_invalid_type_guess():
+    outcome, message = check_guess("abc", 50)
+    assert outcome == "Invalid"
+    assert "invalid" in message.lower()

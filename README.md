@@ -35,7 +35,7 @@ This game is a Streamlit number guessing game where players try to guess a secre
 
 ```
 $ pytest -q
-17 passed
+21 passed
 ```
 
 - [ ] Add a screenshot here if required by your submission system.
