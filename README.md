@@ -31,7 +31,7 @@ This game is a Streamlit number guessing game where players try to guess a secre
 
 - Fixed game is playable and winning works correctly.
 - Added a High Score tracker feature saved to `high_score.txt` and shown in the sidebar.
-- The developer debug panel now shows stable secret number and attempt tracking.
+- Added enhanced UI: color-coded hints, hot/cold emojis, and a player session summary table.
 - Test output:
 
 ```
@@ -39,7 +39,8 @@ $ pytest -q
 21 passed
 ```
 
-- [ ] Add a screenshot here if required by your submission system.
+- Screenshot of enhanced UI (paste image link or path):
+  ![Game UI](screenshots/game_ui.png)
 
 ## Agent Contribution
 - This feature expansion was planned and implemented with Copilot (agent mode) guidance: I asked for a meaningful new feature and then added high-score load/save logic in `app.py`, with comments noting agent collaboration.

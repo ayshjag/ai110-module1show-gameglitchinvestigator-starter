@@ -132,12 +132,42 @@ if submit:
         outcome, message = check_guess(guess_int, st.session_state.secret)
 
         if show_hint:
-            st.warning(message)
+            if outcome == "Too High":
+                st.error(message)
+            elif outcome == "Too Low":
+                st.info(message)
+            elif outcome == "Win":
+                st.success(message)
+            else:
+                st.warning(message)
+
+        # Hot/Cold feedback based on distance
+        if outcome in ["Too High", "Too Low"]:
+            distance = abs(guess_int - st.session_state.secret)
+            if distance <= 3:
+                st.success("🔥 Hot! You are very close.")
+            elif distance <= 10:
+                st.info("🌶️ Warm. Keep going.")
+            else:
+                st.write("❄️ Cold. Try a bigger adjustment.")
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
             outcome=outcome,
             attempt_number=st.session_state.attempts,
+        )
+
+        # Session summary table for player state
+        st.table(
+            {
+                "Metric": ["Attempts", "Score", "High Score", "Secret"],
+                "Value": [
+                    st.session_state.attempts,
+                    st.session_state.score,
+                    st.session_state.high_score,
+                    st.session_state.secret if st.session_state.status != "playing" else "?",
+                ],
+            }
         )
 
         if outcome == "Win":
