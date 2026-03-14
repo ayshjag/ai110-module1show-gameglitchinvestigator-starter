@@ -25,13 +25,20 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+This game is a Streamlit number guessing game where players try to guess a secret number within a given range and limited attempts. The original version had state and type bugs that caused the secret number to change unexpectedly and generated misleading hints. I moved critical logic into `logic_utils.py`, normalized guesses and secrets to integers in `check_guess`, fixed scoring in `update_score`, stabilized Streamlit session state, and added comprehensive unit tests in `tests/test_game_logic.py`.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- Fixed game is playable and winning works correctly.
+- The developer debug panel now shows stable secret number and attempt tracking.
+- Test output:
+
+```
+$ pytest -q
+17 passed
+```
+
+- [ ] Add a screenshot here if required by your submission system.
 
 ## 🚀 Stretch Features
 
